@@ -1,0 +1,402 @@
+/* .a{
+    display: none; ẩn đi code
+    display: block; hiện lại code
+} */
+*{
+    box-sizing: border-box;
+}
+body, html {
+    font-family: 'Hind', sans-serif;
+}
+/* Header */
+/* position:absolute header bị mất vì position:absolute carousel đè lên nên mất */
+header{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    /* nếu có left: 50%; thì nó đi lun qua phải, nên phải có transform: translateX(-50%); để canh giữa theo chiều ngang */
+    z-index: 3;
+    /* z-index để cho thẻ có độ ưu tiên cao hơn thẻ khác, z-index: cao hơn thì độ ưu tiên cao hơn */
+    padding: 8px 0;
+}
+header .navbar-brand{
+    outline: none;
+}
+header .navbar-brand i{
+    color: #35a22c;
+    font-size: 2.5rem;
+}
+header .navbar-brand span{
+    font-size: 2.25rem;
+    color: white;
+}
+header ul li{
+    margin: 0 10px;
+}
+/* button navbar */
+.navbar-dark .navbar-toggler{
+    background-color: #35a22c;
+}
+/* text navbar */
+.navbar-dark .navbar-nav .nav-link{
+    color: white;
+}
+header ul li a{
+    transition: all .5s;
+}
+header ul li.active a{
+    color: #35a22c !important;
+}
+header ul li:hover a{
+    color: #35a22c;
+}
+/* After đường kẻ dưới li */
+header ul li::after{
+    /* after/before bắt buộc phải có content:"" */
+    content: "";
+    height: 3px;
+    display: block;
+    background-color: #35a22c;
+    width: 0%;
+    transition: all .5s;
+}
+header ul li.active::after{
+    width: 100%;
+}
+header ul li:hover::after{
+    width: 100%;
+    color: #35a22c;
+}
+.navbar-toggler:focus, .navbar-toggler:hover{
+    outline: none;
+}
+/* Carousel */
+.overlay_carousel{
+    position: absolute;
+    left: 0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    background-color: #272b3680;
+    z-index: 2;
+}
+/* .carousel {
+    padding-bottom: 30px;
+} */
+.carousel-item{
+    /* background-image không có chiều cao phải cho height */
+    height:100vh;
+    /* vh độ cao tương đối gặp màn hình nào cũng full */
+    background-position: center;
+    background-size: cover;
+    /* làm lớp overlay mỏng ảnh nền xuống */
+    padding-bottom: 50px;
+}
+.carousel-caption h3{
+    font-size: 3.5rem;
+}
+.carousel-caption p{
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+}
+.carousel-item:nth-child(1){
+    background-image: url("../images/finland.jpg");
+}
+.carousel-item:nth-child(2){
+    background-image: url("../images/mountains.jpg");
+}
+.carousel-item:nth-child(3){
+    background-image: url("../images/mountains-1.jpg");
+}
+.img__thumb{
+    width: 150px;
+    margin: auto;
+    /* margin: auto canh giua 4 huong */
+}
+.img__thumb img{
+    border-radius: 50%;
+}
+/* làm cho div.carousel-item canh giữa theo chiều đứng carousel */
+.carousel-caption{
+    top: 50%;
+    transform: translateY(-50%);
+    /* 2 thuộc tính đi đôi phải ở trong position */
+}
+/* Làm cái chuyển carousel thành hình tròn */
+.carousel-indicators li{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+.carousel-indicators li{
+    width: 13px;
+    height: 13px;
+}
+.carousel-indicators li.active{
+    background-color: #35a22c;
+}
+.carousel-indicators{
+    bottom: 10%;
+}
+/* Project */
+#project .title{
+    max-width: 750px;
+}
+#project .title h2{
+    font-size: 2.25rem;
+    font-weight: bold;
+}
+.nav-pills .nav-link{
+    border: 1px solid black;
+    margin: 0 5px;
+    color: #1a1d2d;
+}
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link{
+    background-color: #35a22c;
+}
+
+#project .card{
+    margin-bottom: 2rem ;
+    border-radius: 20px;
+    overflow: hidden;
+    /* overflow:hidden cắt gọn tấm hình border nó nằm ngoài / ẩn bên ngoài thẻ */
+    /* border: 1px solid transparent; */
+    text-align: center;
+    box-shadow: 0 0 0.4rem rgb(0 0 0 / 13%);
+    /* box-shadow: X Y độbóng màu*/
+    cursor: pointer;
+    border: none;
+    /* border-top-color: transparent; */
+    transition: all .5s;
+}
+#project .card .card-body{
+    border: 1px solid transparent;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    transition  : all .5s;
+}
+#project .card:hover .card-body{
+    border-color: #35a22c;
+    border-top-color: transparent;
+}
+#project .card .card-body h4{
+    font-size: 1.25rem;
+    font-weight: 400;
+}
+#project .card .card-body p{
+    color: #585858;
+    margin-bottom: 16px;
+}
+#project .card:hover .card-body h4{
+    color: #35a22c;
+}
+/* Service */
+#service{
+    background-image: url("../images/3.jpg");
+    background-size: cover;
+    background-position: center;
+    padding: 5rem 0;
+    background-attachment: fixed;
+    /* background-attachment:fixed / roll thi dung im 1 cho */
+    position: relative;
+}
+#service .title{
+    position: relative;
+    /* Thêm position thì đè lên overlay */
+    /*  z-index  /đi đôi với 
+        position */
+    max-width: 750px;
+    margin: auto;
+}
+#service .title h2{
+    font-size: 2.25rem;
+    font-weight: 700;
+}
+#service .title p{
+    margin-top: 16px;
+}
+
+#service .card{
+    padding: 40px;
+    color: white;
+    background-color: rgba(255,255,255,.1);
+    border-radius: 10px;
+    backdrop-filter: blur(3px);
+    /* backdrop-filter: blur(3px) làm nhòe */
+    border: 1px solid rgba(255,255,255,.1);
+}
+#service .card:hover{
+    background-color: black;
+}
+#service .card .card-body{
+    padding: 0;
+}
+#service .card .card-body i{
+    font-size: 3rem;
+    color: #35a22c;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+#service .card .card-body h4{
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+    padding-top: 25px;
+    font-weight: 700;
+}
+#service .card .card-body p{
+    padding:15px 0;
+}
+#service .overlay{
+    background-color: #070a0cb8;
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+/* EDU */
+#edu{
+    position: relative;
+    padding: 70px;
+}
+#edu p{
+    color: #585858;
+}
+#edu .edu__content{
+   position: relative;
+   z-index: 2;
+}
+#edu .bg_edu{
+    position:absolute;
+    top: 0;
+    left: 0; 
+    background-image: url("../images/memphis_3.png");
+    width: 100%;
+    height: 100%;
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: bottom left;
+}
+#edu .bg_edu::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,255,255,.5);
+    z-index: 1;
+}
+.edu__left{
+    box-shadow: 0 0 30px 0 rgb(0 0 0 / 30%);
+    padding: 45px;
+    border-radius: 10px;
+    backdrop-filter: blur(3px)
+}
+.edu__left h3{
+    font-size: 2.25rem;
+    font-weight: 700;
+    background-color: rgba(255,255,255,.1);
+}
+.edu__logo img{
+    width: 100%;
+    height: auto;
+}
+/* Footer */
+footer{
+    background-color: #222;
+    color: #aaa;
+}
+footer .footer__social{
+    padding-bottom: 25px;
+    border-bottom: 1px solid #454545;
+}
+footer .footer__social a{
+    color: #aaa;
+    margin-right: 10px;
+    transition: all .5s;
+    text-decoration: none;
+}
+footer .footer__social i{
+    width: 42px;
+    height: 42px;
+    line-height: 42px;
+    border: 1px solid #454545;
+    border-radius: 50%;
+    overflow: hidden;
+}
+footer .footer__social a:hover i{
+    color: #35a22c;
+}
+footer .footer__text{
+    margin-top: 30px;
+}
+footer .footer__text span{
+    transition: all .5s;
+    cursor: pointer;
+}
+footer .footer__text span:hover{
+    color: #35a22c;
+}
+@media screen and (min-width:991.98){
+    #edu .container-lg{
+        max-width: 1140px;
+    }
+}
+@media screen and (max-width: 991.98px){
+    header {
+        z-index: 11;
+    }
+    header .navbar-collapse{
+        background-color: white;
+    }
+    header .navbar-nav .nav-item{
+        margin: 0;
+        padding: 0 10px;
+    }
+    header .navbar-nav .nav-item:hover{
+        background-color: #35a22c;
+    }
+    header .navbar-nav .nav-item .nav-link{
+        color: #35a22c;
+    }
+    header .navbar-nav .nav-item:hover .nav-link{
+        color: white;
+    }
+    header ul li.active::after{
+        width: 0%;
+    }
+    header ul li.active:hover .nav-link{
+        color: white !important;
+    }
+    header ul li:hover::after{
+        width: 0%;
+    }
+}
+
+@media screen and (max-width:575.98px){
+    .carousel-caption h3{
+        font-size: 13vw;
+        /* line-height: 5vw; */
+    }
+    /* .carousel-caption p{
+        font-size: 3vw;
+    } */
+    #edu .bg_edu{
+        background-size: cover;
+    }
+    .container{
+        max-width: 100vw;
+    }
+    
+}
+@media screen and (max-width:420px){
+    header .navbar-brand span{
+        font-size: 7vw;
+    }
+    header .navbar-brand i{
+        font-size: 8vw;
+    }
+    .edu__left h3{
+        font-size: 7vw;
+    }
+}
+
